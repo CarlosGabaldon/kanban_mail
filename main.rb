@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sequel'
+require 'imap'
 
 configure do
 	DB = Sequel.sqlite('./db/kanban_mail.db')
@@ -16,5 +17,15 @@ get '/' do
   @completed_items = Item.get_all_completed || []
   
   haml :list
+end
+
+
+get '/mail' do
+  mail = Mail.new 'INBOX',
+              :user_name => 'cgabaldon@gmail.com',
+              :password =>  ''
+              
+  mail.fetch
+  redirect '/'
 end
 

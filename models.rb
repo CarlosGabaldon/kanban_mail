@@ -2,6 +2,7 @@ require 'date'
 require 'rubygems'
 require 'sequel'
 
+DB = Sequel.sqlite('./db/kanban_mail.db')
 
 class Item < Sequel::Model
 
@@ -22,6 +23,22 @@ class Item < Sequel::Model
     def get_all_completed
       Item.filter(:state => 'completed')
       
+    end
+    
+    def add_message(state, message)
+      
+      DB[:items].insert(
+        :state => state,
+        :from => message[:from],
+        :to => message[:to],
+        :subject => message[:subject],
+        :cc => message[:cc],
+        :bc => message[:bc],
+        :sent => message[:sent],
+        :body => message[:body],
+        :headers => message[:headers],
+        :created_on => nil,
+        :updated_on => nil)
     end
     
   end
