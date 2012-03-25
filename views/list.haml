@@ -1,0 +1,42 @@
+%div{:class => "colmid"}
+  %div{:class => "colleft"}
+    %div{:class => "col1"}
+      %h2 Action (#{@action_items.count})
+      -@action_items.each do |item|
+        %h2 
+          %a{:href => "/item/#{item.id}"}
+            =item.from
+          %span= item.sent
+          %p= item.subject
+      
+    
+      %hr
+      %h2 Hold (#{@hold_items.count})
+      -@hold_items.each do |item|
+        %h2 
+          %a{:href => "/item/#{item.id}"}
+            =item.from
+          %span= item.sent
+          %p= item.subject
+      
+      
+    %div:{:class => "col2"}
+      %h2 New (#{@new_items.count})
+      -@new_items.each do |item|
+        %h2 
+          %a{:href => "/item/#{item.id}"}
+            =item.from
+          %span= item.sent
+          %p= item.subject
+  
+    
+    %div{:class => "col3"}
+      %h2 Done (#{@completed_items.count})
+      -@completed_items.each do |item|
+        %h2 
+          %a{:href => "/item/#{item.id}"}
+            =item.from
+          %span
+            =item.sent
+          %p
+            =item.subject

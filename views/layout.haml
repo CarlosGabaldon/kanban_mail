@@ -1,0 +1,38 @@
+!!! Strict
+%html
+  %head
+    %title Kanban Mail
+    %link{:rel => "stylesheet", :href => "/css/style.css", :type => "text/css", :media => "all"}
+  %body
+    %div{:id => "header"}
+      %h1
+        Kanban Mail
+      %ul
+        %li
+          %a{:href => "/email", :class => "active"}
+            %span
+              Get Mail
+           
+    %div{:class => "colmask threecol"}
+      = yield
+        
+          
+    %div{:id => "footer"}
+      %h2 &copy;2010 Yellow Shovel, LLC
+      %div{:id => "dev_info"}
+        %h3 Site built with
+        %ul
+          %li
+            %a{:href => "http://nginx.net"} Nginx 
+          %li
+            %a{:href => "http://haml.hamptoncatlin.com/"} HAML
+          %li
+            %a{:href => "http://www.sinatrarb.com/"} Sinatra
+          %li
+            %a{:href => "http://www.ruby-lang.org"} Ruby
+          %li
+            %a{:href => "http://git.or.cz/"} Git
+      
+           
+  
+        

@@ -1,0 +1,60 @@
+= KanbanMail
+
+  Copyright (c) 2010 Carlos Gabaldon <carlosgabaldon.com>, Yellow Shovel, LLC <yellowshovel.com>
+
+
+  Web site:
+  SQLite:     http://www.sqlite.org/
+  Sequel:     http://sequel.rubyforge.org/
+  Sinatra:    http://sinatrarb.com/
+  Haml:       http://haml.hamptoncatlin.com/
+
+
+
+
+= SETUP
+
+== RUBY
+  $ curl -O ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6.tar.gz
+  $ tar xzvf ruby-1.8.6.tar.gz
+  $ cd ruby-1.8.6
+  $ ./configure --prefix=/usr/local --enable-pthread --with-readline-dir=/usr/local --enable-shared
+  $ make
+  $ sudo make install
+  $ sudo make install-doc
+  $ ruby -v
+  $ ruby 1.8.6
+
+== SQLITE
+  $ wget http://www.sqlite.org/sqlite-3.5.4.tar.gz
+  $ tar xvfz sqlite-3.5.4.tar.gz
+  $ cd sqlite-3.5.4
+  $ ./configure --prefix=/usr/local
+  $ make
+  $ sudo make install
+
+== GEMS
+  $ sudo gem install sinatra
+  $ sudo gem install sequel
+  $ sudo gem install syntaxi
+  $ sudo gem install do_sqlite3
+  $ sudo gem install rspec
+  $ sudo gem install --no-ri haml
+
+
+== TEXTMATE
+  $ cd /Applications/TextMate.app/Contents/SharedSupport/Bundles
+  $ svn co "http://svn.textmate.org/trunk/Bundles/Ruby%20Haml.tmbundle"
+
+
+= DEV
+
+  $ rake sinatra:seed_db
+  $ cd ./kanban_mail
+  $ ruby main.rb
+
+
+= PROD
+
+ 
+
