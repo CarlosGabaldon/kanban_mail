@@ -23,6 +23,7 @@ class Mail
 
     m.search([@search]).each do |message_id|
       envelope = m.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
+      body = m.fetch(message_id, "RFC822")[0].attr["RFC822"]
       
       Item.add_message 'new',
           :from => envelope.from[0].name.to_s,
@@ -31,12 +32,13 @@ class Mail
           :cc => nil, #this are collections..
           :bc => nil, 
           :sent => Date.today.strftime("%m-%d-%Y"),
-          :body => 'Body..',#envelope.body, #todo figure out how to dig out the body..
+          :body => body,
           :headers => nil,
           :created_on => nil,
           :updated_on => nil
     end
     m.close
+    m.logout
   end
   
 end

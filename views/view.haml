@@ -1,0 +1,13 @@
+
+%form{:action => '#{@path}', :method => 'post'}
+  %select{:name => 'item_state'}
+    -@item_states.each do |state|
+      %option{:value => "#{state}"}
+        =state.capitalize
+  %input{:type => 'submit', :value => 'Move'}
+    
+    
+%h2= @item.from
+%span= @item.sent
+%p= @item.subject
+%p= @item.body

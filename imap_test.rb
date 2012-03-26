@@ -19,7 +19,9 @@ mail.search([@@search_command]).each do |message_id|
   envelope.cc.each { |cc| puts cc } unless envelope.cc.nil? 
   puts "BC:"
   envelope.bcc.each { |bc| puts bc } unless envelope.bcc.nil?
-  #puts envelope.body
+  puts  mail.fetch(message_id, "RFC822")[0].attr["RFC822"]
 end
 
 mail.close
+mail.logout
+mail.disconnect

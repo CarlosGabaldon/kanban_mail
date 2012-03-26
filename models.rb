@@ -25,6 +25,10 @@ class Item < Sequel::Model
       
     end
     
+    def get(id)
+      Item[:id => id]
+    end
+    
     def add_message(state, message)
       
       DB[:items].insert(

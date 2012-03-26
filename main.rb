@@ -3,6 +3,8 @@ require 'sinatra'
 require 'sequel'
 require 'imap'
 
+enable :logging
+
 configure do
 	DB = Sequel.sqlite('./db/kanban_mail.db')
 end
@@ -17,6 +19,18 @@ get '/' do
   @completed_items = Item.get_all_completed || []
   
   haml :list
+end
+
+get '/item/:id' do
+  @item = Item.get(params[:id])
+  @path = request.path_info
+  @item_states = ['new', 'action', 'hold', 'completed']
+  logger.info("GET '/item/#{params[:id]}' @item.subject => #{@item.subject}")
+  haml :view
+end
+
+post '/item/:id' do
+  #@item = Item.update(:state => )
 end
 
 
