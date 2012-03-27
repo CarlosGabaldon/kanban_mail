@@ -34,13 +34,8 @@
   $ sudo make install
 
 == GEMS
-  $ sudo gem install sinatra
-  $ sudo gem install sequel
-  $ sudo gem install syntaxi
-  $ sudo gem install do_sqlite3
-  $ sudo gem install rspec
-  $ sudo gem install --no-ri haml
   $ sudo gem install bundler
+  $ bundle install
 
 
 == TEXTMATE
@@ -52,7 +47,7 @@
 
   $ rake sinatra:seed_db
   $ cd ./kanban_mail
-  $ ruby main.rb
+  $ rackup
 
 
 = PROD
