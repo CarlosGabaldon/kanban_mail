@@ -1,6 +1,7 @@
-require './sequel'
-require './models'
-require './imap'
-require './main'
+require 'rubygems'
+require 'bundler'
 
-run Sinatra::Application
+Bundler.require
+
+require './main'
+run MySinatraApp
