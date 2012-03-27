@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'sinatra'
-require 'main.rb'
+
+require './main.rb'
 
 run Sinatra::Application
