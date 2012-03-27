@@ -1,9 +1,13 @@
 
-%form{:action => '#{@path}', :method => 'post'}
-  %select{:name => 'item_state'}
-    -@item_states.each do |state|
-      %option{:value => "#{state}"}
-        =state.capitalize
+%form{:action => "#{@path}", :method => 'post'}
+  %select{:name => 'item_queue'}
+    -@item_queues.each do |state|
+      -if(@item.state == state) 
+        %option{:value => "#{state}", :selected => 'selected'}
+          =state.capitalize
+      -else
+        %option{:value => "#{state}"}
+          =state.capitalize
   %input{:type => 'submit', :value => 'Move'}
     
     
@@ -11,3 +15,4 @@
 %span= @item.sent
 %p= @item.subject
 %p= @item.body
+

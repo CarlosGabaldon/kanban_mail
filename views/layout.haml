@@ -4,7 +4,7 @@
     %title Kanban Mail
     %link{:rel => "stylesheet", :href => "/css/style.css", :type => "text/css", :media => "all"}
   %body
-    %div{:id => "header"}
+    %div#header
       %h1
         Kanban Mail
       %ul
@@ -17,9 +17,9 @@
       = yield
         
           
-    %div{:id => "footer"}
+    %div#footer
       %h2 &copy;2010 Yellow Shovel, LLC
-      %div{:id => "dev_info"}
+      %div#dev_info
         %h3 Site built with
         %ul
           %li

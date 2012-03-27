@@ -29,6 +29,14 @@ class Item < Sequel::Model
       Item[:id => id]
     end
     
+    def get_queues
+      ['new', 'action', 'hold', 'completed']
+    end
+    
+    def move_to_queue!(id, queue)
+      Item.filter(:id => id).update(:state => queue)
+    end
+    
     def add_message(state, message)
       
       DB[:items].insert(

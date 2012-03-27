@@ -1,15 +1,9 @@
 require 'rubygems'
 require 'sinatra'
-require 'sequel'
 require 'imap'
+require 'models'
 
 enable :logging
-
-configure do
-	DB = Sequel.sqlite('./db/kanban_mail.db')
-end
-
-require 'models'
 
 get '/' do
 
@@ -24,13 +18,15 @@ end
 get '/item/:id' do
   @item = Item.get(params[:id])
   @path = request.path_info
-  @item_states = ['new', 'action', 'hold', 'completed']
-  logger.info("GET '/item/#{params[:id]}' @item.subject => #{@item.subject}")
+  @item_queues = Item.get_queues
   haml :view
 end
 
 post '/item/:id' do
-  #@item = Item.update(:state => )
+  id = params[:id]
+  queue = params[:item_queue]
+  Item.move_to_queue!(id, queue)
+  redirect '/'
 end
 
 
