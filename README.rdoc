@@ -1,6 +1,6 @@
 = KanbanMail
 
-  Copyright (c) 2010 Carlos Gabaldon <carlosgabaldon.com>, Yellow Shovel, LLC <yellowshovel.com>
+  Copyright (c) 2012 Carlos Gabaldon <carlosgabaldon.com>, Yellow Shovel, LLC <yellowshovel.com>
 
 
   Web site:
@@ -13,17 +13,13 @@
 
 
 = SETUP
-
-== RUBY
-  $ curl -O ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.6.tar.gz
-  $ tar xzvf ruby-1.8.6.tar.gz
-  $ cd ruby-1.8.6
-  $ ./configure --prefix=/usr/local --enable-pthread --with-readline-dir=/usr/local --enable-shared
-  $ make
-  $ sudo make install
-  $ sudo make install-doc
-  $ ruby -v
-  $ ruby 1.8.6
+  
+== RUBY w/ RVM
+  $ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+  $ source ~/.bash_profile
+  $ rvm requirements
+  $ rvm install 1.9.3
+  $ rvm use ruby-1.9.3-p0 --default
 
 == SQLITE
   $ wget http://www.sqlite.org/sqlite-3.5.4.tar.gz

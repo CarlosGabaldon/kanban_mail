@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './main'
+require './kanban'
 run Sinatra::Application
