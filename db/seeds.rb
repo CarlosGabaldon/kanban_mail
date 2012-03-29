@@ -2,7 +2,10 @@ require 'rubygems'
 require 'sequel'
 require 'date'
 
-DB = Sequel.postgres('postgres://kanbanmail_app:kanban@localhost/kanbanmail')
+# PROD - Heroku
+# DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+
+DB = Sequel.connect('postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
 
 unless DB.table_exists? :items
   DB.create_table :items do
@@ -16,8 +19,8 @@ unless DB.table_exists? :items
     text :sent
     text :body
     text :headers
-    datetime :created_on
-    datetime :updated_on
+    timestamp :created_on
+    timestamp :updated_on
   end
 end
 

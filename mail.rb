@@ -2,6 +2,8 @@
 # http://tools.ietf.org/html/rfc3501#section-6.4.4
 # http://ruby-doc.org/stdlib-1.9.3/libdoc/net/imap/rdoc/Net/IMAP.html
 
+
+#### Net::IMAP.new(@host, @port, @use_ssl) IS THROWING FATAL EXCEPTION UNDER RUBY 1.9.3 #############
 require 'net/imap'
 require './item'
 

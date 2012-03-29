@@ -41,14 +41,6 @@
   $ env ARCHFLAGS="-arch x86_64" gem install pg
   $ createuser -P -s -e kanbanmail_app
 
-== SQLITE
-  $ wget http://www.sqlite.org/sqlite-3.5.4.tar.gz
-  $ tar xvfz sqlite-3.5.4.tar.gz
-  $ cd sqlite-3.5.4
-  $ ./configure --prefix=/usr/local
-  $ make
-  $ sudo make install
-
 == GEMS
   $ sudo gem install bundler
   $ bundle install
