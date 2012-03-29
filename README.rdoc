@@ -3,13 +3,12 @@
   Copyright (c) 2012 Carlos Gabaldon <carlosgabaldon.com>, Yellow Shovel, LLC <yellowshovel.com>
 
 
-  Web site:
-  SQLite:     http://www.sqlite.org/
+  Built On:
+  PostgreSQL: http://www.postgresql.org/
   Sequel:     http://sequel.rubyforge.org/
   Sinatra:    http://sinatrarb.com/
   Haml:       http://haml.hamptoncatlin.com/
   Homebrew:   http://mxcl.github.com/homebrew/
-
 
 
 
