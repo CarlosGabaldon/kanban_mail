@@ -50,7 +50,7 @@
   
   $ git push heroku master
   $ sudo gem install taps
-  $ heroku db:push sqlite://db/kanban_mail.db
+  $ heroku db:push sqlite://db/kanban_mail.db 
   $ heroku logs --tail
  
 
