@@ -2,7 +2,7 @@ require 'date'
 require 'rubygems'
 require 'sequel'
 
-DB = Sequel.sqlite('./db/kanban_mail.db')
+DB = Sequel.postgres('postgres://localhost/kanbanmail')
 
 class Item < Sequel::Model
 

@@ -8,6 +8,7 @@
   Sequel:     http://sequel.rubyforge.org/
   Sinatra:    http://sinatrarb.com/
   Haml:       http://haml.hamptoncatlin.com/
+  Homebrew:   http://mxcl.github.com/homebrew/
 
 
 
@@ -20,6 +21,25 @@
   $ rvm requirements
   $ rvm install 1.9.3
   $ rvm use ruby-1.9.3-p0 --default
+  
+  
+== Homebrew
+
+  $ /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+  
+  
+== POSTGRESQL
+
+  $ brew install postgresql
+  $ brew info postgresql
+  $ initdb /usr/local/var/postgres
+  $ mate .bash_login # add export PATH=/usr/local/bin:$PATH
+  $ source .bash_login
+  $ which psql # should /usr/local/bin/psql
+  $ createdb kanbanmail
+  $ psql kanbanmail
+  $ env ARCHFLAGS="-arch x86_64" gem install pg
+  $ createuser -P -s -e kanbanmail_app
 
 == SQLITE
   $ wget http://www.sqlite.org/sqlite-3.5.4.tar.gz

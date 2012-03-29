@@ -8,7 +8,7 @@ require 'date'
 @@search_command = 'UNSEEN'
 
 mail = Net::IMAP.new('imap.gmail.com', 993, true)
-mail.login('cgabaldon@gmail.com', '')
+mail.login('cgabaldon@gmail.com', 'Jazcat1228')
 mail.examine('INBOX')
 
 mail.search([@@search_command]).each do |message_id|
