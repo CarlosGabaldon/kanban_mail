@@ -61,8 +61,7 @@
 = PROD
   
   $ git push heroku master
-  $ sudo gem install taps
-  $ heroku db:push sqlite://db/kanban_mail.db 
+  $ heroku rake sinatra:seed_db
   $ heroku logs --tail
  
 
