@@ -2,11 +2,7 @@ require 'date'
 require 'rubygems'
 require 'sequel'
 
-# PROD - Heroku
-# DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
-
-# DEV
-DB = Sequel.connect('postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
 
 class Item < Sequel::Model
 
