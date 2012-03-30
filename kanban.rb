@@ -33,7 +33,7 @@ end
 get '/mail' do
   mail = Mail.new 'INBOX',
               :user_name => 'cgabaldon@gmail.com',
-              :password =>  'Jazcat1228'
+              :password =>  ''
               
   mail.fetch
   redirect '/'
