@@ -5,13 +5,17 @@
 require 'net/imap'
 require 'date'
 
-@@search_command = 'UNSEEN'
+search_command = 'UNSEEN'
+host = 'imap.gmail.com'
+port = 993
+use_ssl = true
+verify_ssl = false
 
-mail = Net::IMAP.new('imap.gmail.com', 993, true)
-mail.login('cgabaldon@gmail.com', '')
+mail = Net::IMAP.new(host, port, use_ssl, nil, verify_ssl)
+mail.login('cgabaldon@gmail.com', 'Jazcat1228')
 mail.examine('INBOX')
 
-mail.search([@@search_command]).each do |message_id|
+mail.search([search_command]).each do |message_id|
   envelope = mail.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
   date = DateTime.parse(envelope.date).strftime("%m-%d-%Y")
   puts "#{date} \t #{envelope.from[0].name}: \t#{envelope.subject}"

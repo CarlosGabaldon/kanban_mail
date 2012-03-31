@@ -18,7 +18,7 @@
   $ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
   $ source ~/.bash_profile
   $ rvm requirements
-  $ rvm install 1.9.3
+  $ rvm install ruby-1.9.3 --with-openssl-dir=/opt/local --with-iconv-dir=$rvm_path/usr
   $ rvm use ruby-1.9.3-p0 --default
   
   
@@ -55,6 +55,7 @@
   $ rake sinatra:seed_db
   $ cd ./kanban_mail
   $ rackup
+  $ open http://localhost:9292/
 
 
 = PROD
@@ -62,5 +63,6 @@
   $ git push heroku master
   $ heroku rake sinatra:seed_db
   $ heroku logs --tail
+  $ open http://kanbanmail.heroku.com/
  
 

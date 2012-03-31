@@ -21,6 +21,9 @@ unless DB.table_exists? :items
   end
 end
 
+# drop existing data
+DB[:items].delete
+
 # populate the table
 DB[:items].insert(
   :state => 'new',

@@ -12,14 +12,17 @@ class Mail
     @host = 'imap.gmail.com'
     @port = 993
     @use_ssl = true
+    @verify = false
+    @certs = nil
     @folder = folder
     @search = 'UNSEEN'
     @user = account[:user_name]
     @password = account[:password]
   end
   
+
   def fetch
-    m = Net::IMAP.new(@host, @port, @use_ssl)
+    m = Net::IMAP.new(@host, @port, @use_ssl, @certs, @verify)
     m.login(@user, @password)
     m.examine(@folder)
 
