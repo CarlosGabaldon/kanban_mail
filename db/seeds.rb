@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sequel'
 require 'date'
+require './blow_fish'
 
 DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
 
@@ -21,10 +22,9 @@ unless DB.table_exists? :items
   end
 end
 
-# drop existing data
+
 DB[:items].delete
 
-# populate the table
 DB[:items].insert(
   :state => 'new',
   :from => 'Mint.com',
