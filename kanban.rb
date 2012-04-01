@@ -31,12 +31,12 @@ post '/item/:id' do
 end
 
 
-get '/mail' do
-  mail = Mail.new 'INBOX',
-              :user_name => 'cgabaldon@gmail.com',
-              :password =>  Blowfish.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9")
+#get '/mail' do
+#  mail = Mail.new 'INBOX',
+#              :user_name => 'cgabaldon@gmail.com',
+#              :password =>  Blowfish.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9")
               
-  mail.fetch
-  redirect '/'
-end
+#  mail.fetch
+#  redirect '/'
+#end
 
