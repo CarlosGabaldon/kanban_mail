@@ -23,14 +23,17 @@ class Mail
     m.search([@search]).each do |message_id|
       envelope = m.fetch(message_id, "ENVELOPE")[0].attr["ENVELOPE"]
       body = m.fetch(message_id, "RFC822")[0].attr["RFC822"]
-      
+      date = DateTime.parse(envelope.date).strftime("%m-%d-%Y")
+      address = envelope.from[0]
+      from = address.name || address.host
+        
       Item.add_message 'new',
-          :from => envelope.from[0].name.to_s,
+          :from => from,
           :to => envelope.to.to_s,
           :subject => envelope.subject.to_s,
-          :cc => nil, #this are collections..
+          :cc => nil, #these are collections..
           :bc => nil, 
-          :sent => Date.today.strftime("%m-%d-%Y"),
+          :sent => date,
           :body => body,
           :headers => nil,
           :created_on => nil,

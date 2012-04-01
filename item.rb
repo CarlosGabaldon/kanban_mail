@@ -9,7 +9,7 @@ class Item < Sequel::Model
   class << self
 
     def get_all_new
-      Item.filter(:state => 'new')
+      Item.filter(:state => 'new').order_by(:sent.desc)
     end
     
     def get_all_action
@@ -21,8 +21,7 @@ class Item < Sequel::Model
     end
     
     def get_all_completed
-      Item.filter(:state => 'completed')
-      
+      Item.filter(:state => 'completed').order_by(:sent.desc) 
     end
     
     def get(id)

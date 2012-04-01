@@ -6,17 +6,26 @@ require './blow_fish'
 
 enable :logging
 
-get '/' do
+configure do
+  enable :sessions
+end
 
+## HOME ##
+get '/' do
+  redirect '/login' unless logged_in?
+    
   @new_items = Item.get_all_new || []
   @action_items = Item.get_all_action || []
   @hold_items = Item.get_all_hold || []
   @completed_items = Item.get_all_completed || []
-  
   haml :list
 end
 
+
+## ITEM ROUTES ##
 get '/item/:id' do
+  redirect '/login' unless logged_in?
+    
   @item = Item.get(params[:id])
   @path = request.path_info
   @item_queues = Item.get_queues
@@ -30,7 +39,27 @@ post '/item/:id' do
   redirect '/'
 end
 
+## AUTHENTCATION ROUTES ##
+get '/login' do
+  haml :login, :layout => :public_layout
+end
+
+post '/login' do
+  user = params[:email]
+  pwd = params[:password]
+  if user == 'cgabaldon@gmail.com' and pwd == "FUCKYOU2"
+    session[:logged_in] = true
+  end
+  redirect '/'
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end
+
 ########## COMMENT OUT THIS METHOD WHEN DEPLOYING TO HEROKU, UNTIL AUTH IS ADDED ############
+## MAIL ROUTES ##
 get '/mail' do
   mail = Mail.new 'INBOX',
               :user_name => 'cgabaldon@gmail.com',
@@ -40,3 +69,21 @@ get '/mail' do
   redirect '/'
 end
 
+## ERROR ROUTES ##
+not_found do
+  haml :not_found, :layout => :public_layout
+end
+
+error do
+  haml :error, :layout => :public_layout
+end
+
+
+private
+def logged_in?
+  if session[:logged_in].nil?
+    false
+  else
+    true
+  end
+end

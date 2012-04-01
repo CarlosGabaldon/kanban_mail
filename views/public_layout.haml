@@ -7,26 +7,11 @@
     %div#header
       %h1
         Kanban Mail
-      %ul
-        %li
-          %a{:href => "/", :class => "active"}
-            %span
-              Home
         
-        %li
-          %a{:href => "/mail"}
-            %span
-              Get Mail
-              
-        %li
-          %a{:href => "/logout"}
-            %span
-              Logout
-           
     %div{:class => "colmask threecol"}
       = yield
-        
-          
+
+
     %div#footer
       %h2 &copy;2012 Yellow Shovel, LLC
       %div#dev_info
@@ -46,8 +31,4 @@
             %a{:href => "http://gembundler.com/"} Bundler
           %li
             %a{:href => "http://git.or.cz/"} Git
-          
-      
-           
-  
-        
+    
