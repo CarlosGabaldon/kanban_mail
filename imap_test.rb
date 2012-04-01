@@ -12,7 +12,7 @@ use_ssl = true
 verify_ssl = false
 
 mail = Net::IMAP.new(host, port, use_ssl, nil, verify_ssl)
-mail.login('cgabaldon@gmail.com', 'Jazcat1228')
+mail.login('cgabaldon@gmail.com', '')
 mail.examine('INBOX')
 
 mail.search([search_command]).each do |message_id|
