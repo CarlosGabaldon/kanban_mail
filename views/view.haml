@@ -1,5 +1,6 @@
 
 %form{:action => "#{@path}", :method => 'post'}
+  %label Move to:
   %select{:name => 'item_queue'}
     -@item_queues.each do |state|
       -if(@item.state == state) 
@@ -8,6 +9,14 @@
       -else
         %option{:value => "#{state}"}
           =state.capitalize
+  %label Due in:
+  %select{:name => 'due_in'}
+    -(1..7).each do |day|
+      %option{:value => "#{day}"}
+        -if(day == 1)
+          #{day} day
+        -else
+          #{day} days
   %input{:type => 'submit', :value => 'Move'}
     
     
