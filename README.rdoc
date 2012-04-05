@@ -66,7 +66,11 @@
   
   $ git push heroku master
   $ heroku rake sinatra:seed_db
+  $ heroku domains:add www.kanbanmail.com 
+  $ open https://manage.www.namecheap.com/myaccount/index.asp
+    - Update DNS CNAME => kanbanmail.heroku.com
   $ heroku logs --tail
   $ open http://kanbanmail.heroku.com/
+  $ open http://www.kanbanmail.com
  
 
