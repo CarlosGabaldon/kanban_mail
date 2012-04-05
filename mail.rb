@@ -36,6 +36,7 @@ class Mail
           :sent => date,
           :body => body,
           :headers => nil,
+          :due => nil,
           :created_on => nil,
           :updated_on => nil
     end

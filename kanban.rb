@@ -34,8 +34,9 @@ end
 
 post '/item/:id' do
   id = params[:id]
+  days_due = params[:days_due]
   queue = params[:item_queue]
-  Item.move_to_queue!(id, queue)
+  Item.move_to_queue!(id, queue, days_due.to_i)
   redirect '/'
 end
 

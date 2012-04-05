@@ -9,19 +9,19 @@ class Item < Sequel::Model
   class << self
 
     def get_all_new
-      Item.filter(:state => 'new').order_by(:sent.desc)
+      Item.filter(:queue => 'new').order_by(:sent.desc)
     end
     
     def get_all_action
-      Item.filter(:state => 'action')
+      Item.filter(:queue => 'action').order_by(:due.asc)
     end
     
     def get_all_hold
-      Item.filter(:state => 'hold')
+      Item.filter(:queue => 'hold').order_by(:due.desc)
     end
     
     def get_all_completed
-      Item.filter(:state => 'completed').order_by(:sent.desc) 
+      Item.filter(:queue => 'completed').order_by(:sent.desc) 
     end
     
     def get(id)
@@ -32,14 +32,16 @@ class Item < Sequel::Model
       ['new', 'action', 'hold', 'completed']
     end
     
-    def move_to_queue!(id, queue)
-      Item.filter(:id => id).update(:state => queue)
+    def move_to_queue!(id, queue, days_due = 0)
+      due = nil
+      due = (Date.today + days_due) unless days_due == 0
+      Item.filter(:id => id).update(:queue => queue, :due => due)
     end
     
-    def add_message(state, message)
+    def add_message(queue, message)
       
       DB[:items].insert(
-        :state => state,
+        :queue => queue,
         :from => message[:from],
         :to => message[:to],
         :subject => message[:subject],

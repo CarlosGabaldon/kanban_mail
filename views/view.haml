@@ -1,17 +1,17 @@
-
+%br
 %form{:action => "#{@path}", :method => 'post'}
   %label Move to:
   %select{:name => 'item_queue'}
-    -@item_queues.each do |state|
-      -if(@item.state == state) 
-        %option{:value => "#{state}", :selected => 'selected'}
-          =state.capitalize
+    -@item_queues.each do |queue|
+      -if(@item.queue == queue) 
+        %option{:value => "#{queue}", :selected => 'selected'}
+          =queue.capitalize
       -else
-        %option{:value => "#{state}"}
-          =state.capitalize
+        %option{:value => "#{queue}"}
+          =queue.capitalize
   %label Due in:
-  %select{:name => 'due_in'}
-    -(1..7).each do |day|
+  %select{:name => 'days_due'}
+    -(0..7).each do |day|
       %option{:value => "#{day}"}
         -if(day == 1)
           #{day} day
@@ -19,7 +19,7 @@
           #{day} days
   %input{:type => 'submit', :value => 'Move'}
     
-    
+%h2 Due: #{@item.due.strftime("%m-%d-%Y") unless @item.due.nil?} 
 %h2= @item.from
 %span= @item.sent
 %p= @item.subject

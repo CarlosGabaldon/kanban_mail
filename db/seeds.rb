@@ -8,7 +8,7 @@ DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://kanbanmail_app:kanban@loc
 unless DB.table_exists? :items
   DB.create_table :items do
     primary_key :id
-    text :state
+    text :queue
     text :from
     text :to
     text :subject
@@ -17,6 +17,7 @@ unless DB.table_exists? :items
     text :sent
     text :body
     text :headers
+    timestamp :due
     timestamp :created_on
     timestamp :updated_on
   end
@@ -26,7 +27,7 @@ end
 DB[:items].delete
 
 DB[:items].insert(
-  :state => 'new',
+  :queue => 'new',
   :from => 'Mint.com',
   :to => 'cgabaldon@gmail.com',
   :subject => 'Your tax refund has arrived.',
@@ -35,11 +36,12 @@ DB[:items].insert(
   :sent => Date.today.strftime("%m-%d-%Y"),
   :body => 'Body..',
   :headers => nil,
+  :due => nil,
   :created_on => nil,
   :updated_on => nil)
 
 DB[:items].insert(
-  :state => 'new',
+  :queue => 'new',
   :from => 'Amazon.com',
   :to => 'cgabaldon@gmail.com',
   :subject => 'You books have shipped',
@@ -48,11 +50,12 @@ DB[:items].insert(
   :sent => Date.today.strftime("%m-%d-%Y"),
   :body => 'Body..',
   :headers => nil,
+  :due => nil,
   :created_on => nil,
   :updated_on => nil)
 
 DB[:items].insert(
-  :state => 'action',
+  :queue => 'action',
   :from => 'Dice.com',
   :to => 'cgabaldon@gmail.com',
   :subject => 'New jobs for your review.',
@@ -61,11 +64,12 @@ DB[:items].insert(
   :sent => Date.today.strftime("%m-%d-%Y"),
   :body => 'Body..',
   :headers => nil,
+  :due => nil,
   :created_on => nil,
   :updated_on => nil)
 
 DB[:items].insert(
-  :state => 'hold',
+  :queue => 'hold',
   :from => 'Monster.com',
   :to => 'cgabaldon@gmail.com',
   :subject => 'Interview tips.',
@@ -74,11 +78,12 @@ DB[:items].insert(
   :sent => Date.today.strftime("%m-%d-%Y"),
   :body => 'Body..',
   :headers => nil,
+  :due => nil,
   :created_on => nil,
   :updated_on => nil)
   
 DB[:items].insert(
-  :state => 'completed',
+  :queue => 'completed',
   :from => 'Mint.com',
   :to => 'cgabaldon@gmail.com',
   :subject => 'Large deposit',
@@ -87,5 +92,6 @@ DB[:items].insert(
   :sent => Date.today.strftime("%m-%d-%Y"),
   :body => 'Body..',
   :headers => nil,
+  :due => nil,
   :created_on => nil,
   :updated_on => nil)
