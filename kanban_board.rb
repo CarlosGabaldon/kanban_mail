@@ -2,12 +2,14 @@ require 'rubygems'
 require 'sinatra'
 require './mail'
 require './item'
-
-enable :logging
+require './partials'
 
 configure do
   enable :sessions
+  enable :logging
 end
+
+helpers Sinatra::Partials
 
 ## HOME ##
 get '/' do
@@ -77,7 +79,6 @@ end
 error do
   haml :error, :layout => :public_layout
 end
-
 
 private
 def logged_in?

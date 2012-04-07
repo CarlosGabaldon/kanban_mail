@@ -2,13 +2,7 @@
   %div{:class => "colleft"}
     %div{:class => "col1"}
       %h2 Action (#{@action_items.count})
-      -@action_items.each do |item|
-        %h2 
-          %a{:href => "/item/#{item.id}"}
-            =item.from
-          %span= item.sent
-          %span Due #{item.due.strftime("%m-%d-%Y") unless item.due.nil?}
-          %p= item.subject
+      =partial(:item, :haml, :collection => @action_items)
       
     
       %hr
