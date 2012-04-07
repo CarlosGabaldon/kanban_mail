@@ -11,7 +11,7 @@
           =queue.capitalize
   %label Due in:
   %select{:name => 'days_due'}
-    -(0..7).each do |day|
+    -8.times do |day|
       %option{:value => "#{day}"}
         -if(day == 1)
           #{day} day
