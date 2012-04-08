@@ -61,13 +61,15 @@ class Item < Sequel::Model
       due = due_date.mjd - Date.today.mjd # Use Modified Julian Day Number
       
       if due > 1
-        "Due in #{due} days"
+        "Due in #{due} days."
       elsif due == 1
-        "Due in #{due} day"
+        "Due in #{due} day."
       elsif due == 0
         "Due today!"
+      elsif due = -1
+        "Overdue by #{due/-1} day!"
       else due < 0
-        "Overdue by #{due/-1} days"
+        "Overdue by #{due/-1} days!"
       end
       
     else
