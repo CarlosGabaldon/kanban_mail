@@ -1,6 +1,9 @@
 %h2 
   %a{:href => "/item/#{item.id}"}
     =item.from
-  %span= item.sent
-  %span Due #{item.due.strftime("%m-%d-%Y") unless item.due.nil?}
+    
+  -unless item.due.nil?
+    %span Due: #{item.due_in_days} days
+  -else
+    %span= item.sent
   %p= item.subject

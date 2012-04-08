@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'pathname'
 require './mail'
 require './item'
 require './partials'

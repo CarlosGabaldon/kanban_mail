@@ -53,7 +53,16 @@ class Item < Sequel::Model
         :created_on => nil,
         :updated_on => nil)
     end
-    
   end
+  
+  def due_in_days
+    unless self.due.nil?
+      due_date = Date.parse(due.strftime("%Y-%m-%d"))
+      due_date.mjd - Date.today.mjd # Use Modified Julian Day Number
+    else
+      0
+    end
+  end
+  
 end
 
