@@ -58,9 +58,20 @@ class Item < Sequel::Model
   def due_in_days
     unless self.due.nil?
       due_date = Date.parse(due.strftime("%Y-%m-%d"))
-      due_date.mjd - Date.today.mjd # Use Modified Julian Day Number
+      due = due_date.mjd - Date.today.mjd # Use Modified Julian Day Number
+      
+      if due > 1
+        "Due in #{due} days"
+      elsif due == 1
+        "Due in #{due} day"
+      elsif due == 0
+        "Due today!"
+      else due < 0
+        "Overdue by #{due/-1} days"
+      end
+      
     else
-      0
+      ""
     end
   end
   

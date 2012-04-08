@@ -3,7 +3,7 @@
     =item.from
     
   -unless item.due.nil?
-    %span Due: #{item.due_in_days} days
+    %span=item.due_in_days
   -else
     %span= item.sent
   %p= item.subject
