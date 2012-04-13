@@ -66,7 +66,7 @@ class Item < Sequel::Model
         "Due in #{due} day."
       elsif due == 0
         "Due today!"
-      elsif due = -1
+      elsif due == -1
         "Overdue by #{due/-1} day!"
       else due < 0
         "Overdue by #{due/-1} days!"
