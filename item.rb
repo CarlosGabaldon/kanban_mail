@@ -1,6 +1,25 @@
 require 'date'
 require 'rubygems'
 require 'sequel'
+require 'mail'
+require 'openssl'
+
+module Password
+   def self.cipher(mode, key, data)
+     cipher = OpenSSL::Cipher::Cipher.new('bf-cbc').send(mode)
+     cipher.key = Digest::SHA256.digest(key)
+     cipher.update(data) << cipher.final
+   end
+
+   def self.encrypt(key, data)
+     cipher(:encrypt, key, data)
+   end
+
+   def self.decrypt(key, text)
+     cipher(:decrypt, key, text)
+   end
+end
+
 
 DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
 
@@ -38,21 +57,52 @@ class Item < Sequel::Model
       Item.filter(:id => id).update(:queue => queue, :due => due)
     end
     
-    def add_message(queue, message)
+    
+    def load_queue!(queue, account)
       
-      DB[:items].insert(
-        :queue => queue,
-        :from => message[:from],
-        :to => message[:to],
-        :subject => message[:subject],
-        :cc => message[:cc],
-        :bc => message[:bc],
-        :sent => message[:sent],
-        :body => message[:body],
-        :headers => message[:headers],
-        :created_on => nil,
-        :updated_on => nil)
+      Mail.defaults do
+        retriever_method :imap, 
+                         :address    => account[:address],
+                         :port       => 993,
+                         :user_name  => account[:user_name],
+                         :password   => account[:password],
+                         :enable_ssl => true
+      end
+
+      recent_mail = Mail.find :what       => :last, 
+                              :keys       => ["ALL", "UNSEEN"], 
+                              :ready_only => true, 
+                              :count      => 9999, 
+                              :order      => :desc
+
+      recent_mail.each do |mail|
+        
+        date = mail.date.strftime("%m-%d-%Y %I:%M:%S %p %Z")
+        from = (mail.from || []).join(',')
+        to = (mail.to || []).join(',') 
+        cc = (mail.cc || []).join(',')
+        bcc = (mail.bcc || []).join(',')
+        subject = mail.subject.to_s
+        body = mail.body.to_s
+        
+        
+        DB[:items].insert(
+          :queue => queue,
+          :from => from,
+          :to => to,
+          :subject => subject,
+          :cc => cc,
+          :bc => bcc,
+          :sent => date,
+          :body => body,
+          :headers => nil,
+          :created_on => nil,
+          :updated_on => nil)
+        
+      end
+      
     end
+    
   end
   
   def due_in_days

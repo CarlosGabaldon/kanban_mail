@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sequel'
 require 'date'
-require './blow_fish'
+
 
 DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://kanbanmail_app:kanban@localhost/kanbanmail') 
 

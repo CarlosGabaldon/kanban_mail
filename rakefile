@@ -61,5 +61,11 @@ namespace :sinatra do
     load(seed_file) if File.exist?(seed_file)
   end
   
+  desc 'Creating the database from db/create.rb'
+  task :create_db do
+    create_file = "./db/create.rb"
+    puts "Creating database from: #{create_file}"
+    load(create_file) if File.exist?(create_file)
+  end
   
 end

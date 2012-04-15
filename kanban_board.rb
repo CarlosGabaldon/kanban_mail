@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'pathname'
-require './mail'
 require './item'
 require './partials'
 
@@ -61,14 +60,15 @@ get '/logout' do
   redirect '/'
 end
 
-########## COMMENT OUT THIS METHOD WHEN DEPLOYING TO HEROKU, UNTIL AUTH IS ADDED ############
+
 ## MAIL ROUTES ##
 get '/mail' do
-  mail = Mail.new 'INBOX',
-          :user_name => 'cgabaldon@gmail.com',
-          :password =>  Password.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9")
-              
-  mail.fetch
+  
+  Item.load_queue! "new",
+    :user_name => 'cgabaldon@gmail.com',
+    :password => Password.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9"),
+    :address => "imap.gmail.com"
+
   redirect '/'
 end
 
