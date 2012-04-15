@@ -9,6 +9,7 @@
   Sinatra:    http://sinatrarb.com/
   Haml:       http://haml.hamptoncatlin.com/
   Homebrew:   http://mxcl.github.com/homebrew/
+  Heroku:     https://api.heroku.com/myapps/kanbanmail
 
 
 
