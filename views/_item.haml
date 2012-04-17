@@ -1,9 +1,11 @@
-%h2 
-  %a{:href => "/item/#{item.id}"}
-    =item.from
+.kanban-card
+  %h3 Item: #{item.id}
+  %h2 
+    %a{:href => "/item/#{item.id}"}
+      =item.subject
     
-  -unless item.due.nil?
-    %span=item.due_in_days
-  -else
-    %span= item.sent
-  %p= item.subject
+    -unless item.due.nil?
+      %h3=item.due_in_days
+    -else
+      %h3= item.sent_friendly
+    %h2= item.from_friendly

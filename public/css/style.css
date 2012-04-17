@@ -35,7 +35,7 @@ img {
 }
 
 /* Kanban Card */
-.kanban {
+.kanban-card {
     margin:6px 0 0 1px;
 	padding:3px 10px;
 	border:1px solid #000;

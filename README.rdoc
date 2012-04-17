@@ -53,12 +53,16 @@
 == TEXTMATE
   $ cd /Applications/TextMate.app/Contents/SharedSupport/Bundles
   $ svn co "http://svn.textmate.org/trunk/Bundles/Ruby%20Haml.tmbundle"
+  $ git clone git://github.com/cucumber/cucumber-tmbundle.git Cucumber.tmbundle
+  $ git clone git://github.com/rspec/rspec-tmbundle.git RSpec.tmbundle
+  $ osascript -e 'tell app "TextMate" to reload bundles'
 
 
 = DEV
 
-  $ rake sinatra:seed_db
+  $ rake sinatra:seed_db or rake sinatra:create_db
   $ cd ./kanban_mail
+  $ cucumber
   $ rackup
   $ open http://localhost:9292/
 

@@ -77,7 +77,7 @@ class Item < Sequel::Model
 
       recent_mail.each do |mail|
         
-        date = mail.date.strftime("%m-%d-%Y %I:%M:%S %p %Z")
+        date = mail.date #.strftime("%m-%d-%Y %I:%M:%S %p %Z")
         from = (mail.from || []).join(',')
         to = (mail.to || []).join(',') 
         cc = (mail.cc || []).join(',')
@@ -103,6 +103,14 @@ class Item < Sequel::Model
       
     end
     
+  end
+  
+  def sent_friendly
+    self.sent.strftime("Sent on %m-%d-%Y at %I:%M:%S %p")
+  end
+  
+  def from_friendly
+    "From #{self.from}"
   end
   
   def due_in_days

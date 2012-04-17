@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './kanban_board'
+require './app'
 run Sinatra::Application

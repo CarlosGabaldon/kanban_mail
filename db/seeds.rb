@@ -15,7 +15,7 @@ DB.create_table :items do
   text :subject
   text :cc
   text :bc
-  text :sent
+  timestamp :sent
   text :body
   text :headers
   timestamp :due
