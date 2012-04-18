@@ -94,7 +94,7 @@ class Item < Sequel::Model
           :cc => cc,
           :bc => bcc,
           :sent => date,
-          :body => body,
+          :body => body.force_encoding('UTF-8'),
           :headers => nil,
           :created_on => nil,
           :updated_on => nil)
