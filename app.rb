@@ -62,15 +62,15 @@ end
 
 
 ## MAIL ROUTES ##
-get '/mail' do
+#get '/mail' do
   
-  Item.load_queue! "new",
-    :user_name => 'cgabaldon@gmail.com',
-    :password => Password.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9"),
-    :address => "imap.gmail.com"
+#  Item.load_queue! "new",
+#    :user_name => 'cgabaldon@gmail.com',
+#    :password => Password.decrypt("key","\xDB\x1E`.\x82\xA9\xDC3\xBC,5\xE4\xB0\x82\xB7\xE9"),
+#    :address => "imap.gmail.com"
 
-  redirect '/'
-end
+#  redirect '/'
+#end
 
 ## ERROR ROUTES ##
 not_found do
